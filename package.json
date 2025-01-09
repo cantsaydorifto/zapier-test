@@ -1,16 +1,13 @@
 {
-  "name": "zapier-test",
+  "type": "module", 
   "scripts": {
     "start": "vercel dev",
-    "deploy": "vercel",
-    "dev": "bun run --hot src/index.ts"
+    "deploy": "vercel"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.47.12",
-    "hono": "^4.6.16"
+    "hono": "^4.4.2"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.16",
     "vercel": "^32.4.1"
   }
 }
