@@ -1,7 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = new Hono().basePath("/api");
 
 app.get("/", (c) => {
@@ -10,7 +12,8 @@ app.get("/", (c) => {
 
 app.post("/add", async (c) => {
   try {
-    const { SUPABASE_URL, SUPABASE_KEY } = env < { NAME: string } > c;
+    const SUPABASE_URL = process.env.SUPABASE_URL;
+    const SUPABASE_KEY = process.env.SUPABASE_KEY;
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const { data, error } = await supabase.from("todo").insert({});
     if (error) {
