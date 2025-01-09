@@ -1,10 +1,22 @@
+import { createClient } from "@supabase/supabase-js";
 import { Hono } from "hono";
+import { env } from "hono/adapter";
 import { handle } from "hono/vercel";
 
 const app = new Hono().basePath("/api");
 
 app.get("/", (c) => {
-  return c.json({ message: "Congrats! You've deployed Hono to Vercel" });
+  return c.json({ message: "Hello World!" });
+});
+
+app.post("/add", async (c) => {
+  const { SUPABASE_URL, SUPABASE_KEY } = env < { NAME: string } > c;
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  const { data, error } = await supabase.from("todo").insert({});
+  if (error) {
+    throw { status: 500, message: "Error creating todo" };
+  }
+  return c.json({ message: "Todo created successfully" });
 });
 
 const handler = handle(app);
