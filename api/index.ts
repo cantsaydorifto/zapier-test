@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-import supabase from "./utils/supabase";
+import supabase from "../utils/supabase";
 
 export const config = {
   runtime: "edge",
