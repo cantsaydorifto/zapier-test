@@ -6,6 +6,9 @@ const app = new Hono().basePath("/api");
 app.get("/", (c) => {
   return c.json({ message: "Hello World!" });
 });
+app.post("/apples", (c) => {
+  return c.json({ message: "Hello Apples!" });
+});
 
 const handler = handle(app);
 
