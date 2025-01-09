@@ -2,10 +2,6 @@ import { Hono } from "hono";
 import { handle } from "hono/vercel";
 import supabase from "../utils/supabase";
 
-export const config = {
-  runtime: "edge",
-};
-
 const app = new Hono().basePath("/api");
 
 app.get("/", (c) => {
@@ -20,4 +16,10 @@ app.post("/add", async (c) => {
   return c.json(data);
 });
 
-export default handle(app);
+const handler = handle(app);
+
+export const GET = handler;
+export const POST = handler;
+export const PATCH = handler;
+export const PUT = handler;
+export const OPTIONS = handler;
